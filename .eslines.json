@@ -1,0 +1,7 @@
+{
+    "rulesNotToDowngrade": ["no-unused-vars"],
+    "remote": "origin/master",
+    "processors": {
+	    "default": "lines-modified"
+    }
+}

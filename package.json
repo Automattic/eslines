@@ -1,0 +1,33 @@
+{
+  "name": "eslines",
+  "version": "0.0.8",
+  "description": "Utility to process ESLint JSON reports",
+  "license": "GPL-2.0+",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Automattic/eslines.git"
+  },
+  "main": "./index.js",
+  "bin": {
+    "eslines": "./index.js"
+  },
+  "scripts": {
+    "lint": "./node_modules/.bin/eslint .",
+    "lint-fix": "./node_modules/.bin/eslint --fix .",
+    "test": "./node_modules/.bin/tape tests/test*js | ./node_modules/.bin/faucet",
+    "test-differ": "./node_modules/.bin/tape tests/test-differ.js | ./node_modules/.bin/faucet",
+    "test-eslines": "./node_modules/.bin/tape tests/test-eslines.js | ./node_modules/.bin/faucet",
+    "test-exit-codes": "./node_modules/.bin/tape tests/test-exit-codes.js | ./node_modules/.bin/faucet",
+    "test-parsing-errors": "./node_modules/.bin/tape tests/test-parsing-errors.js | ./node_modules/.bin/faucet"
+  },
+  "dependencies": {
+    "eslint": "3.4.0",
+    "optionator": "0.8.1"
+  },
+  "devDependencies": {
+    "tape": "4.6.0",
+    "faucet": "0.0.1",
+    "eslint-config-wpcalypso": "0.5.0",
+    "eslint-plugin-wpcalypso": "2.0.0"
+  }
+}
