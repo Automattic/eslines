@@ -44,7 +44,7 @@ For example:
 		"processors": {
 			"default": "lines-modified",
 			"master": "parsing-errors",
-			"my/topic-branch"
+			"my/topic-branch": "parsing-errors"
 		}
 	}
 
