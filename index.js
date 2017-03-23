@@ -24,8 +24,12 @@ const optionator = require( 'optionator' )( {
 
 if ( ! process.stdin.isTTY ) {
 	process.stdin.setEncoding( 'utf-8' );
+	let inputData = '';
 	process.stdin.on( 'data', function( data ) {
-		const opts = optionator.parseArgv( process.argv );
-		process.exit( cli( JSON.parse( data ), opts ) );
+		inputData = inputData + data;
 	} );
+	process.stdin.on('end', () => {
+		const opts = optionator.parseArgv( process.argv );
+		process.exit( cli( JSON.parse( inputData ), opts ) );
+	})
 }
