@@ -1,5 +1,8 @@
 #!/usr/bin/env node
 
+/* eslint strict: "off" */
+'use strict';
+
 const cli = require( './src/cli' );
 const optionator = require( 'optionator' )( {
 	options: [ {
@@ -28,8 +31,8 @@ if ( ! process.stdin.isTTY ) {
 	process.stdin.on( 'data', function( data ) {
 		inputData = inputData + data;
 	} );
-	process.stdin.on('end', () => {
+	process.stdin.on( 'end', () => {
 		const opts = optionator.parseArgv( process.argv );
 		process.exit( cli( JSON.parse( inputData ), opts ) );
-	})
+	} );
 }
