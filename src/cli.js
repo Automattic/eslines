@@ -6,6 +6,7 @@ const childProcess = require( 'child_process' );
 const fs = require( 'fs' );
 const path = require( 'path' );
 const exitCode = require( './lib/exit-code' );
+const stripWarnings = require( './lib/strip-warnings' );
 
 /*
 * This function should *not* call process.exit() directly,
@@ -91,8 +92,10 @@ module.exports = function( report, options ) {
 	*/
 
 	process.env.ESLINES_DIFF = options.diff || 'remote';
-	const newReport = JSON.parse( processor( report ) );
+	let newReport = JSON.parse( processor( report ) );
 	delete process.env.ESLINES_DIFF;
+
+	newReport = options.quiet ? stripWarnings( newReport ) : newReport;
 
 	if ( Array.isArray( newReport ) && ( newReport.length > 0 ) ) {
 		const formatter = getESLintFormatter( options.format );

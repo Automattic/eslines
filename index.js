@@ -20,6 +20,11 @@ const optionator = require( 'optionator' )( {
 		alias: 'd',
 		type: 'String',
 		description: 'choose what to diff, index or remote - "remote" by default'
+	}, {
+		option: 'quiet',
+		alias: 'q',
+		type: 'Boolean',
+		description: 'report errors only'
 	} ]
 } );
 

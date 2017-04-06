@@ -63,6 +63,8 @@ The `eslines` Command Line Interface has the following options:
 	* `index`: to diff HEAD against the git index.
 	* `remote`: to diff HEAD against the git remote. This is the default.
 
+* **--quiet**: report errors only.
+
 Some examples:
 
 to get a report with `junit` format containing only the parsing errors
