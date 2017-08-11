@@ -1,4 +1,4 @@
-module.exports = function( report, lines, rulesNotToDowngrade ) {
+module.exports = function( report, lines ) {
 	// deep clone the report, so we can create a new one
 	// to tweak and edit in place - as this function remains pure.
 	const newReport = JSON.parse( JSON.stringify( report ) );
@@ -24,25 +24,15 @@ module.exports = function( report, lines, rulesNotToDowngrade ) {
 		return severity === 2;
 	};
 
-	const isRuleNotToDowngrade = ( ruleId, notToDowngrade ) => {
-		if ( ! Array.isArray( notToDowngrade ) ) {
-			return false;
-		}
-		return notToDowngrade.indexOf( ruleId ) > -1;
-	};
-
-	// errors will be downgraded to warnings, except for those:
-	// - reported in lines modified within the current git branch
-	// - reported for rules not to downgrade
+	// errors will be downgraded to warnings except for those
+	// reported in lines modified within the current git branch
 	newReport.forEach( file => {
 		file.messages.forEach( message => {
 			if ( ! isLineModified( message.line, lines[ file.filePath ] ) &&
 			isMessageAnError( message.severity ) ) {
-				if ( ! isRuleNotToDowngrade( message.ruleId, rulesNotToDowngrade ) ) {
-					message.severity = 1;
-					file.warningCount ++;
-					file.errorCount--;
-				}
+				message.severity = 1;
+				file.warningCount ++;
+				file.errorCount--;
 			}
 		} );
 	} );
