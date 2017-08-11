@@ -13,7 +13,7 @@ Add the default `.eslines.json` config file in you git repo:
 	{
 		"rulesNotToDowngrade": [],
 		"remote": "origin/master",
-		"processors": {
+		"branches": {
 			"default": "lines-modified"
 		}
 	}
@@ -34,14 +34,14 @@ Options:
 
 * **remote**: lines modified are determined by diffing this remote git branch against the current branch.
 
-* **processors**: `eslines` will choose the processor to use by default and which one to use for particular branches looking at this object.
+* **branches**: tell `eslines` which processor to use by default and which one to use for particular branches.
 
 For example:
 
 	{
 		"rulesNotToDowngrade": [],
 		"remote": "origin/master",
-		"processors": {
+		"branches": {
 			"default": "lines-modified",
 			"master": "parsing-errors",
 			"my/topic-branch": "parsing-errors"

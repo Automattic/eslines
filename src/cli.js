@@ -48,16 +48,16 @@ module.exports = function( report, options ) {
 		}
 	};
 
-	const getProcessorNameFromConfig = config => {
-		let processorName = config.default || 'lines-modified';
+	const getProcessorNameForBranch = ( branches ) => {
+		let processorName = branches.default || 'lines-modified';
 
 		const argsBranchName = [ 'rev-parse', '--abbrev-ref', 'HEAD' ];
 		const head = childProcess.spawnSync( 'git', argsBranchName ).stdout.toString().trim();
-		for ( const branch in config ) {
+		for ( const branch in branches ) {
 			if ( branch === head ) {
 				// branch names could be master, add/topic-branch
 				// and any other git branch valid name
-				processorName = config[ branch ];
+				processorName = branches[ branch ];
 				break;
 			}
 		}
@@ -76,7 +76,7 @@ module.exports = function( report, options ) {
 	};
 
 	const config = JSON.parse( fs.readFileSync( '.eslines.json', 'utf-8' ) );
-	const processorName = options.processor || getProcessorNameFromConfig( config.processors );
+	const processorName = options.processor || getProcessorNameForBranch( config.branches );
 	const processor = getProcessor( processorName );
 
 	/*
