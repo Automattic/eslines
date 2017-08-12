@@ -1,6 +1,6 @@
 {
     "branches": {
-	    "default": "lines-modified"
+	    "default": ["lines-modified", "enforce"]
     },
     "processors": {
         "lines-modified": {

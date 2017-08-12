@@ -48,7 +48,7 @@ module.exports = function( report, options ) {
 		}
 	};
 
-	const getProcessorNameForBranch = ( branches ) => {
+	const getProcessorListForBranch = ( branches ) => {
 		let processorName = branches.default || 'lines-modified';
 
 		const argsBranchName = [ 'rev-parse', '--abbrev-ref', 'HEAD' ];
@@ -76,8 +76,8 @@ module.exports = function( report, options ) {
 	};
 
 	const config = JSON.parse( fs.readFileSync( '.eslines.json', 'utf-8' ) );
-	const processorName = options.processor || getProcessorNameForBranch( config.branches );
-	const processor = getProcessor( processorName );
+	const processorList = options.processor.split( ',' ) || getProcessorListForBranch( config.branches ); // eslint-disable-line max-len
+	const processors = processorList.map( getProcessor );
 
 	/*
 	An eslines processor is a regular ESLint formatter, actually.
@@ -92,7 +92,10 @@ module.exports = function( report, options ) {
 	*/
 
 	process.env.ESLINES_DIFF = options.diff || 'remote';
-	let newReport = JSON.parse( processor( report ) );
+	let newReport = processors.reduce(
+		( accReport, processor ) => JSON.parse( processor( accReport ) ),
+		report
+	);
 	delete process.env.ESLINES_DIFF;
 
 	newReport = options.quiet ? stripWarnings( newReport ) : newReport;
