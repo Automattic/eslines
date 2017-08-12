@@ -1,11 +1,13 @@
 {
-    "rulesNotToDowngrade": ["no-unused-vars"],
     "branches": {
 	    "default": "lines-modified"
     },
     "processors": {
         "lines-modified": {
             "remote": "origin/master",
+        },
+        "enforce": {
+            "rules": ["no-unused-vars"],
         }
     }
 }

@@ -18,6 +18,7 @@
     "lint-fix": "./node_modules/.bin/eslint --fix .",
     "test": "./node_modules/.bin/tape tests/test*js | ./node_modules/.bin/faucet",
     "test-differ": "./node_modules/.bin/tape tests/test-differ.js | ./node_modules/.bin/faucet",
+    "test-enforce": "./node_modules/.bin/tape tests/test-enforce.js | ./node_modules/.bin/faucet",
     "test-eslines": "./node_modules/.bin/tape tests/test-eslines.js | ./node_modules/.bin/faucet",
     "test-exit-codes": "./node_modules/.bin/tape tests/test-exit-codes.js | ./node_modules/.bin/faucet",
     "test-parsing-errors": "./node_modules/.bin/tape tests/test-parsing-errors.js | ./node_modules/.bin/faucet"
