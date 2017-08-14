@@ -9,7 +9,7 @@ const optionator = require( 'optionator' )( {
 		option: 'processor',
 		alias: 'p',
 		type: 'String',
-		description: 'choose a processor - "lines-modified" by default'
+		description: 'choose a processor - "downgrade-unmodified-lines" by default'
 	}, {
 		option: 'format',
 		alias: 'f',

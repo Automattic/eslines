@@ -2,7 +2,7 @@
 
 `eslines` helps you to post-process an ESLint JSON report.
 
-The default behavior is transforming all errors into warnings, except 1) those reported in lines modified within the current git branch and 2) any `no-unused-vars` ESLint rule break.
+The default behavior is downgrading errors into warnings if they were reported in lines not modified within the current git branch, except for the 'no-unused-vars' rule.
 
 ## How to use it
 
@@ -14,10 +14,10 @@ Add the default `.eslines.json` config file to your git repo:
 
     {
         "branches": {
-	        "default": ["lines-modified", "enforce"]
+	        "default": ["downgrade-unmodified-lines", "enforce"]
         },
         "processors": {
-            "lines-modified": {
+            "downgrade-unmodified-lines": {
                 "remote": "origin/master",
             },
             "enforce": {
@@ -34,18 +34,18 @@ Run it:
 
 `eslines` reads its configuration from a file named `.eslines.json` placed in the root of your git repository. Out of the box, it comes with three ways of post-processing an ESLint report - we call them *processors*.
 
-The processor `lines-modified` will transform ESLint `errors` into `warnings`, except for errors that are in lines modified in the current branch. The processor `parsing-errors` takes the ESLint report and outputs a new one containing only `Parsing Errors`. The processor `enforce` will transform any `warning` into an `error`. Processors are composable.
+The processor `downgrade-unmodified-lines` will transform ESLint `errors` into `warnings`, except for errors that are in lines modified in the current branch. The processor `parsing-errors` takes the ESLint report and outputs a new one containing only `Parsing Errors`. The processor `enforce` will transform any `warning` into an `error`. Processors are composable.
 
 For example:
 
 	{
 		"branches": {
-			"default": ["lines-modified", "enforce"],
+			"default": ["downgrade-unmodified-lines", "enforce"],
 			"master": ["parsing-errors"],
 			"my/topic-branch": ["parsing-errors"],
 		},
 		"processors": {
-			"lines-modified": {
+			"downgrade-unmodified-lines": {
 				"remote": "origin/master",
 			},
 			"enforce": {
@@ -56,9 +56,9 @@ For example:
 
 With the above configuration, the linting process will report only `parsing-errors` when running on a git branch called `master` or `my/topic-branch`. For any other branch, it will report only errors in lines modified in the current branch and any `no-unused-vars` break, no matter where it happened.
 
-* **branches**: tell `eslines` which processors to use by default and which ones to use for particular branches. By default, it'll use `lines-modified` first, and then `enforce`.
+* **branches**: tell `eslines` which processors to use by default and which ones to use for particular branches. By default, it'll use `downgrade-unmodified-lines` first, and then `enforce`.
 
-* **processors.['lines-modified'].remote**: lines modified are determined by diffing this remote git branch against the current branch.
+* **processors.['downgrade-unmodified-lines'].remote**: lines modified are determined by diffing this remote git branch against the current branch.
 
 * **processors.enforce.rules**: an array containing valid [ESLint rule ids](http://eslint.org/docs/rules/). Any rule declared in this array will be transformed into `errors`.
 
@@ -66,7 +66,7 @@ With the above configuration, the linting process will report only `parsing-erro
 
 The `eslines` Command Line Interface has the following options:
 
-* **--processor** or **-p**: choose an `eslines` processor at run-time. `lines-modified` and `enforce` will be used by default. Admites composition by separating the processors with commas `--processor lines-modified,enforce`.
+* **--processor** or **-p**: choose an `eslines` processor at run-time. `downgrade-unmodified-lines` and `enforce` will be used by default. Admites composition by separating the processors with commas `--processor downgrade-unmodified-lines,enforce`.
 
 * **--format** or **-f**: set any of ESLint default formatters as the output for `eslines`. `stylish` will be used by default.
 

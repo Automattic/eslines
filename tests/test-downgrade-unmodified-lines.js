@@ -1,13 +1,13 @@
 const test = require( 'tape' );
-const eslines = require( '../src/lib/eslines.js' );
+const downgradeUnmodifiedLines = require( '../src/lib/downgrade-unmodified-lines.js' );
 
 // fixtures
 const baseReport = require( './fixtures/eslint.json' );
 const linesModifiedReport = require( './fixtures/eslint-lines-modified.json' );
 const lines = require( './fixtures/lines.json' );
 
-test( 'eslines - empty array if original report is empty', t => {
-	const newReport = eslines( [], lines );
+test( 'downgrade-unmodified-lines - empty array if original report is empty', t => {
+	const newReport = downgradeUnmodifiedLines( [], lines );
 
 	// newReport should be [] as well
 	t.ok( Array.isArray( newReport ) );
@@ -15,15 +15,15 @@ test( 'eslines - empty array if original report is empty', t => {
 	t.end();
 } );
 
-test( 'eslines - same report if lines parameter is empty', t => {
-	const newReport = eslines( baseReport, {} );
+test( 'downgrade-unmodified-lines - same report if lines parameter is empty', t => {
+	const newReport = downgradeUnmodifiedLines( baseReport, {} );
 
 	t.equals( JSON.stringify( newReport ), JSON.stringify( baseReport ) );
 	t.end();
 } );
 
-test( 'eslines - errors in files&lines not modified downgraded to warnings', t => {
-	const newReport = eslines( baseReport, lines );
+test( 'downgrade-unmodified-lines - errors in files&lines not modified downgraded to warnings', t => { // eslint-disable-line max-len
+	const newReport = downgradeUnmodifiedLines( baseReport, lines );
 
 	// t.equals( JSON.stringify( newReport ), JSON.stringify( downgradedReport ) );
 	t.equals( newReport[ 0 ].messages[ 0 ].severity, 1 );
