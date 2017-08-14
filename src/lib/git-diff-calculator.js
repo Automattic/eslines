@@ -3,15 +3,13 @@
 'use strict';
 
 const gitDiffRemoteVSHead = require( '../lib/git-diff' );
-const gitDiffIndex = require( '../lib/git-diff-index' );
+const gitDiffIndexVSHead = require( '../lib/git-diff-index' );
 
-module.exports = function( remote ) {
-	const whatToDiff = process.env.ESLINES_DIFF;
-
+module.exports = function( remote, whatToDiff ) {
 	let diff;
 	if ( whatToDiff === 'index' ) {
-		diff = gitDiffIndex();
-	} else { // 'remote'
+		diff = gitDiffIndexVSHead();
+	} else { // whatToDiff === 'remote'. This is the default.
 		diff = gitDiffRemoteVSHead( remote );
 	}
 

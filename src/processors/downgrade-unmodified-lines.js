@@ -7,6 +7,8 @@ const config = JSON.parse( fs.readFileSync( '.eslines.json', 'utf-8' ) );
 
 module.exports = function( report ) {
 	const remote = config.processors[ 'downgrade-unmodified-lines' ].remote || 'origin/master';
-	const lines = differ( gitDiffCalculator( remote ) );
+	const whatToDiff = process.env.ESLINES_DIFF;
+	const lines = differ( gitDiffCalculator( remote, whatToDiff ) );
+
 	return JSON.stringify( downgradeUnmodifiedLines( report, lines ) );
 };
