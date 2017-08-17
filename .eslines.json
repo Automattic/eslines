@@ -3,11 +3,11 @@
 	    "default": ["downgrade-unmodified-lines", "enforce"]
     },
     "processors": {
-        "lines-modified": {
-            "remote": "origin/master",
+        "downgrade-unmodified-lines": {
+            "remote": "origin/master"
         },
         "enforce": {
-            "rules": ["no-unused-vars"],
+            "rules": ["no-unused-vars"]
         }
     }
 }
