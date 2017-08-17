@@ -76,7 +76,7 @@ module.exports = function( report, options ) {
 	};
 
 	const config = JSON.parse( fs.readFileSync( '.eslines.json', 'utf-8' ) );
-	const processorList = ( options.processor && options.processor.split( ',' ) ) || getProcessorListForBranch( config.branches ); // eslint-disable-line max-len
+	const processorList = ( options.processors && options.processors.split( ',' ) ) || getProcessorListForBranch( config.branches ); // eslint-disable-line max-len
 	const processors = processorList.map( getProcessor );
 
 	/*
