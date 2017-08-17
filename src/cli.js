@@ -49,7 +49,7 @@ module.exports = function( report, options ) {
 	};
 
 	const getProcessorListForBranch = ( branches ) => {
-		let processorName = branches.default || [ 'downgrade-unmodified-lines', 'enforce' ];
+		let processorName = branches.default || [ 'downgrade-unmodified-lines' ];
 
 		const argsBranchName = [ 'rev-parse', '--abbrev-ref', 'HEAD' ];
 		const head = childProcess.spawnSync( 'git', argsBranchName ).stdout.toString().trim();

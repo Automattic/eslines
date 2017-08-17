@@ -10,5 +10,6 @@ module.exports = function( report ) {
 	const whatToDiff = process.env.ESLINES_DIFF;
 	const lines = differ( gitDiffCalculator( remote, whatToDiff ) );
 
-	return JSON.stringify( downgradeUnmodifiedLines( report, lines ) );
+	const rulesNotToDowngrade = config.processors[ 'downgrade-unmodified-lines' ].rulesNotToDowngrade || []; // eslint-disable-line max-len
+	return JSON.stringify( downgradeUnmodifiedLines( report, lines, rulesNotToDowngrade ) );
 };
