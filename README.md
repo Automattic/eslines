@@ -34,21 +34,21 @@ Run it:
 
 	eslint -f json . | eslines
 
+The resulting report will transform any ESLint `error` into a `warning` if it is reported in lines not modified within the current branch. The `no-unused-vars` rule won't be downgraded, though - this is one case where changing one line can cause a linting error in a different one so we recommend preventing it from downgrading.
+
+If you rather use node-like pipes, check the [eslint-eslines](https://github.com/Automattic/eslint-eslines) utility.
+
 ## Config file
 
-`eslines` reads its configuration from a file named `.eslines.json` placed in the root of your git repository. Out of the box, it comes with three ways of post-processing an ESLint report - we call them *processors*.
+`eslines` reads its configuration from a file named `.eslines.json` placed in the root of your git repository. Out of the box, it comes with three ways of post-processing an ESLint report - we call them *processors*: `downgrade-unmodified-lines`, `filter-parsing-errors`, `enforce`.
 
-* `downgrade-unmodified-lines` will transform ESLint `errors` into `warnings` if they are reported in lines not modified within the current branch. It is possible to prevent some rules from being downgraded. We recommend doing this for the `no-unused-vars` rule because this is one case where changing one line can cause a linting error in another.
-* `parsing-errors` takes the ESLint report and outputs a new one containing only `Parsing Errors`.
-* `enforce` will transform `warnings` into `errors` for a subset of rules.
-
-For example:
+Example config:
 
 	{
 		"branches": {
 			"default": ["downgrade-unmodified-lines", "enforce"],
-			"master": ["parsing-errors"],
-			"my/topic-branch": ["parsing-errors"]
+			"master": ["filter-parsing-errors"],
+			"my/topic-branch": ["filter-parsing-errors"]
 		},
 		"processors": {
 			"downgrade-unmodified-lines": {
@@ -61,28 +61,25 @@ For example:
 		}
 	}
 
-With the above configuration, the linting process will report only `parsing-errors` when running on a git branch called `master` or `my/topic-branch`. For other branches, eslines will report any `max-len` or `no-unused-vars` break, plus any error in lines modified within the current branch (provided that `no-unused-vars` is defined as an error in ESLint).
+With the above configuration, the linting process will report only JavaScript parsing errors when running on a git branch called `master` or `my/topic-branch`. For other branches, `eslines` will report any `max-len` or `no-unused-vars` break, plus any error in lines modified within the current branch (provided that `no-unused-vars` is defined as an error in ESLint).
 
 * **branches**: tell `eslines` which processors to use by default and which ones to use for particular branches. If none is set, it'll use `downgrade-unmodified-lines`.
 
-* **processors.['downgrade-unmodified-lines'].remote**: lines modified are determined by diffing this remote git branch against the current branch.
-
-* **processors.['downgrade-unmodified-lines'].rulesNotToDowngrade**: an array containing valid [ESLint rule ids](http://eslint.org/docs/rules/). Any rule declared in this array won't be downgraded to  `warning`. If the rule is declared as a `warning` it won't be transformed into an `error` either - if that's your goal you may want to use the `enforce` processor.
-
-* **processors.['enforce'].rules**: an array containing valid [ESLint rule ids](http://eslint.org/docs/rules/). Any rule declared in this array will be transformed into an `error`.
+* **processors**: each processor may have its own configuration. [Detailed info](https://github.com/automattic/eslines/blob/master/src/processors/README.md).
 
 ## Runtime options
 
 The `eslines` Command Line Interface has the following options:
 
-* **--processors** or **-p**: choose one or several `eslines` processors at run-time. `downgrade-unmodified-lines` will be used by default. Processors can be composed by separating them with commas such as `--processors downgrade-unmodified-lines,enforce`.
-
-* **--format** or **-f**: set any of ESLint default formatters as the output for `eslines`. `stylish` will be used by default.
-
-* **--diff** or **-d**: let you choose between two diff strategies:
+* **--diff** or **-d**: let you choose between two diff strategies for the `downgrade-unmodified-lines` processor
 
 	* `index`: to diff HEAD against the git index.
 	* `remote`: to diff HEAD against the git remote. This is the default.
+
+
+* **--format** or **-f**: set any ESLint formatter as the output for `eslines`. `stylish` will be used by default.
+
+* **--processors** or **-p**: choose one or several `eslines` processors at run-time. `downgrade-unmodified-lines` will be used by default. Processors can be composed by separating them with commas such as `--processors downgrade-unmodified-lines,enforce`.
 
 * **--quiet**: report errors only.
 
@@ -99,4 +96,4 @@ to get a report containing errors in lines modified within files at the git inde
 
 ## How to contribute
 
-See [HACKING.md](HACKING.md)
+See [HACKING.md](https://github.com/automattic/eslines/blob/master/HACKING.md) and [Processors.md](https://github.com/automattic/eslines/blob/master/src/processors/README.md).

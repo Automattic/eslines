@@ -1,18 +1,8 @@
 # Organization of the repository
 
-* within `src/lib/` you may find auto-contained modules, valuable on their own and with no dependencies, apart from node ones. They don't have access to config or environment variables.
+* within `src/lib/` you may find self-contained modules. They don't have access to config or environment variables.
 
-* within `src/processors/` you may find regular ESLint formatters. They take a JSON report, filter/downgrade some errors and return a new one. They use specific pieces from `lib/` and have access to config and environment variables.
-
-# Processor names
-
-We want the processors to have names that communicate what they do. Our current naming space is:
-
-* filter-* if the processor removes some rules from being considered.
-* downgrade-* if the processor converts errors into warnings in a specific case.
-* enforce-* if the processor converts warning into errors in a specific case.
-
-We support composing processors, so we prefer they do one single thing.
+* within `src/processors/` you may find regular ESLint formatters. They take a JSON report, filter/downgrade/enforce some rules and return a new one. They use specific pieces from `lib/` and have access to config and environment variables.
 
 # Context about ESLint plugins VS formatters
 
