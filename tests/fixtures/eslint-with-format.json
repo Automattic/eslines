@@ -1,0 +1,67 @@
+[
+  {
+    "filePath": "with-format.js",
+    "messages": [
+      {
+        "ruleId": "indent",
+        "severity": 2,
+        "message": "Expected indentation of 0 tabs but found 2 spaces.",
+        "line": 2,
+        "column": 3,
+        "nodeType": "VariableDeclaration",
+        "source": "  const x = 0;",
+        "fix": {
+          "range": [
+            15,
+            17
+          ],
+          "text": ""
+        }
+      },
+      {
+        "ruleId": "no-unused-vars",
+        "severity": 2,
+        "message": "'y' is assigned a value but never used.",
+        "line": 3,
+        "column": 7,
+        "nodeType": "Identifier",
+        "source": "const y = 2 * x;"
+      }
+    ],
+    "errorCount": 2,
+    "warningCount": 0,
+    "source": "/** @format */\n  const x = 0;\nconst y = 2 * x;\n"
+  },
+	{
+		"filePath": "without-format.js",
+		"messages": [
+			{
+				"ruleId": "indent",
+				"severity": 2,
+				"message": "Expected indentation of 0 tabs but found 2 spaces.",
+				"line": 1,
+				"column": 3,
+				"nodeType": "VariableDeclaration",
+				"source": "  const x = 0;",
+				"fix": {
+					"range": [
+						0,
+						2
+					],
+					"text": ""
+				}
+			},
+			{
+				"ruleId": "no-unused-vars",
+				"severity": 2,
+				"message": "'y' is assigned a value but never used.",
+				"line": 2,
+				"column": 7,
+				"nodeType": "Identifier",
+				"source": "const y = 2 * x;"
+			}
+		],
+		"errorCount": 2,
+		"warningCount": 0,
+		"source": "  const x = 0;\nconst y = 2 * x;\n"
+	}]

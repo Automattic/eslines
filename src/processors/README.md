@@ -40,6 +40,20 @@ Example:
 
 No config needed.
 
+### filter-when-format
+
+`filter-when-format` will check if the first docblock comment of the file contains a `@format` tag. That means that the file was formatted with Prettier or a similar tool and that formatting-only rules (like `indent`) can be ignored for this file. The motivation for this processor is that ESLint rules sometimes have a different opinion about formatting than Prettier, so we want to conditionally turn them of and treat Prettier as the authority.
+
+Config:
+
+* `rulesToIgnore`: array of ESLint rule ids that should be removed from the report if the `@format` tag is present in the checked file.
+
+Example:
+
+    "filter-when-format": {
+        "rulesToIgnore": ["indent"]
+    }
+
 ### enforce
 
 `enforce` transforms `warnings` into `errors` for a subset of rules.
@@ -50,6 +64,6 @@ Config options:
 
 Example config:
 
-    enforce": {
+    "enforce": {
         "rules": ["max-len"]
     }

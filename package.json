@@ -24,6 +24,7 @@
     "test-filter-parsing-errors": "./node_modules/.bin/tape tests/test-filter-parsing-errors.js | ./node_modules/.bin/faucet"
   },
   "dependencies": {
+    "jest-docblock": "20.0.3",
     "optionator": "0.8.1"
   },
   "devDependencies": {
