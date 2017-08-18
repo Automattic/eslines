@@ -6,10 +6,10 @@
 const cli = require( './src/cli' );
 const optionator = require( 'optionator' )( {
 	options: [ {
-		option: 'processor',
+		option: 'processors',
 		alias: 'p',
 		type: 'String',
-		description: 'choose a processor - "lines-modified" by default'
+		description: 'choose a list of processors - "downgrade-unmodified-lines" by default'
 	}, {
 		option: 'format',
 		alias: 'f',

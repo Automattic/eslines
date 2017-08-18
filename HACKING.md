@@ -1,18 +1,18 @@
 # Organization of the repository
 
-* within src/lib/ you may find auto-contained modules, valuable on their own and with no dependencies, apart from node ones.
+* within `src/lib/` you may find auto-contained modules, valuable on their own and with no dependencies, apart from node ones. They don't have access to config or environment variables.
 
-* within src/processors/ you may find regular ESLint formatters. They take a JSON report, filter/downgrade some errors and return a new one. They use specific pieces from lib/.
+* within `src/processors/` you may find regular ESLint formatters. They take a JSON report, filter/downgrade some errors and return a new one. They use specific pieces from `lib/` and have access to config and environment variables.
 
-# How to get the fixtures for testing
+# Processor names
 
-You may want to execute something like these commands from the root of you repository:
+We want the processors to have names that communicate what they do. Our current naming space is:
 
-* git diff --src-prefix=$PWD/ --dst-prefix=$PWD/ -U0 $(git merge-base $(git rev-parse --abbrev-ref HEAD) origin/master)..HEAD > git.diff
+* filter-* if the processor removes some rules from being considered.
+* downgrade-* if the processor converts errors into warnings in a specific case.
+* enforce-* if the processor converts warning into errors in a specific case.
 
-* eslint --rule "space-in-parens: [ 2, 'always' ]" --rule 'max-len: [2, {code:140}]' -f json --ext=jsx --ext=js . > eslint.json
-
-* eslint --rule "space-in-parens: [ 2, 'always' ]" --rule 'max-len: [2, {code:140}]' -f stylish --ext=jsx --ext=js . > eslint.stylish
+We support composing processors, so we prefer they do one single thing.
 
 # Context about ESLint plugins VS formatters
 
@@ -61,7 +61,7 @@ There is a hacky way that depends on the fact that ESLint uses [optionator](http
 
 * eslint-friendly-formatter takes advantage of this hack (ESLint would not process --opt3 as that file does not exist) to [retrieve the command line options after the `--`](https://github.com/royriojas/eslint-friendly-formatter/blob/master/index.js#L99) marker and use them for its configuration.
 
-# ESLint Parsing errors
+## ESLint Parsing errors
 
 ESLint manages parsing errors (improper JS) in the same way as any other. See this [debate](https://github.com/eslint/eslint/issues/3555) and [PR-3967](https://github.com/eslint/eslint/pull/3967).
 
@@ -70,3 +70,13 @@ Ways to identify a parsing error in an ESLint report:
 * `ruleId=null`
 * `message.startsWith=Parsing error`
 * `fatal` key is present. This is the recommended way.
+
+# How to get fixtures for testing
+
+You may want to execute something like these commands from the root of you repository:
+
+    git diff --src-prefix=$PWD/ --dst-prefix=$PWD/ -U0 $(git merge-base $(git rev-parse --abbrev-ref HEAD) origin/master)..HEAD > git.diff
+
+    eslint --rule "space-in-parens: [ 2, 'always' ]" --rule 'max-len: [2, {code:140}]' -f json --ext=jsx --ext=js . > eslint.json
+
+    eslint --rule "space-in-parens: [ 2, 'always' ]" --rule 'max-len: [2, {code:140}]' -f stylish --ext=jsx --ext=js . > eslint.stylish

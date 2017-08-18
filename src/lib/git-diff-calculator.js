@@ -2,20 +2,15 @@
 
 'use strict';
 
-const fs = require( 'fs' );
 const gitDiffRemoteVSHead = require( '../lib/git-diff' );
-const gitDiffIndex = require( '../lib/git-diff-index' );
+const gitDiffIndexVSHead = require( '../lib/git-diff-index' );
 
-const config = JSON.parse( fs.readFileSync( '.eslines.json', 'utf-8' ) );
-
-module.exports = function() {
-	const whatToDiff = process.env.ESLINES_DIFF;
-
+module.exports = function( remote, whatToDiff ) {
 	let diff;
 	if ( whatToDiff === 'index' ) {
-		diff = gitDiffIndex();
-	} else { // 'remote'
-		diff = gitDiffRemoteVSHead( config.remote );
+		diff = gitDiffIndexVSHead();
+	} else { // whatToDiff === 'remote'. This is the default.
+		diff = gitDiffRemoteVSHead( remote );
 	}
 
 	return diff;

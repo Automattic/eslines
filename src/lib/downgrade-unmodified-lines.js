@@ -8,6 +8,13 @@ module.exports = function( report, lines, rulesNotToDowngrade ) {
 		return newReport;
 	}
 
+	const isRuleNotToDowngrade = ( ruleId, rules ) => {
+		if ( ! Array.isArray( rules ) ) {
+			return false;
+		}
+		return rules.indexOf( ruleId ) > -1;
+	};
+
 	const isLineModified = ( line, whiteList ) => {
 		// We expect the function to be passed the same files
 		// within the ESLint report object and the lines object.
@@ -24,25 +31,16 @@ module.exports = function( report, lines, rulesNotToDowngrade ) {
 		return severity === 2;
 	};
 
-	const isRuleNotToDowngrade = ( ruleId, notToDowngrade ) => {
-		if ( ! Array.isArray( notToDowngrade ) ) {
-			return false;
-		}
-		return notToDowngrade.indexOf( ruleId ) > -1;
-	};
-
-	// errors will be downgraded to warnings, except for those:
-	// - reported in lines modified within the current git branch
-	// - reported for rules not to downgrade
+	// errors in lines not modified will be downgraded to warnings
+	// except those rules set not to downgrade
 	newReport.forEach( file => {
 		file.messages.forEach( message => {
-			if ( ! isLineModified( message.line, lines[ file.filePath ] ) &&
-			isMessageAnError( message.severity ) ) {
-				if ( ! isRuleNotToDowngrade( message.ruleId, rulesNotToDowngrade ) ) {
-					message.severity = 1;
-					file.warningCount ++;
-					file.errorCount--;
-				}
+			if ( isMessageAnError( message.severity ) &&
+				! isLineModified( message.line, lines[ file.filePath ] ) &&
+				! isRuleNotToDowngrade( message.ruleId, rulesNotToDowngrade ) ) {
+				message.severity = 1;
+				file.warningCount ++;
+				file.errorCount--;
 			}
 		} );
 	} );
