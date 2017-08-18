@@ -14,15 +14,19 @@ Release tasks:
 
 ## Testing in Calypso before releasing
 
-    git clone git@github.com:Automattic/wp-calypso.git
-    cd wp-calypso
-    git clone git@github.com:Automattic/eslines.git bin/eslines
-    npm install --save ./bin/eslines
-    npm install
-    git add bin/eslines package.json
-    git commit -m 'Add eslines for testing in CircleCI'
-
 Update `.eslines.json` config as appropiate.
+
+Update `package.json` such as eslines and eslint-eslines packages require the eslines `master` to be released:
+
+    "eslines": "Automattic/eslines#master"
+    "eslint-eslines": "Automattic/eslint-eslines#test/eslines-master"
+
+Update package and shrinkwrap:
+
+    cd <wp-calypso>
+    npm run update-deps
+    git add package.json npm-shrinkwrap.json
+    git commit -m 'Update deps'
 
 **Test that pre-commit hook prevents you from commiting and CircleCI reports the linting error**
 
