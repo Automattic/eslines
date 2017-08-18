@@ -36,7 +36,7 @@ Example:
 
 ### filter-parsing-errors
 
-`filter-parsing-errors` takes the ESLint report and outputs a new one containing only JavaScript parsing errors. [More about parsing errors in ESLint](../../HACKING.md#eslint-parsing-errors).
+`filter-parsing-errors` takes the ESLint report and outputs a new one containing only JavaScript parsing Errors. [More about parsing errors in ESLint](https://github.com/automattic/eslines/blob/master/HACKING.md#eslint-parsing-errors).
 
 No config needed.
 

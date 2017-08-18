@@ -65,7 +65,7 @@ With the above configuration, the linting process will report only JavaScript pa
 
 * **branches**: tell `eslines` which processors to use by default and which ones to use for particular branches. If none is set, it'll use `downgrade-unmodified-lines`.
 
-* **processors**: each processor may have its own configuration. [Detailed info](./src/processors/README.md).
+* **processors**: each processor may have its own configuration. [Detailed info](https://github.com/automattic/eslines/blob/master/src/processors/README.md).
 
 ## Runtime options
 
@@ -96,4 +96,4 @@ to get a report containing errors in lines modified within files at the git inde
 
 ## How to contribute
 
-See [HACKING.md](HACKING.md) and [Processors.md](src/processors/README.md).
+See [HACKING.md](https://github.com/automattic/eslines/blob/master/HACKING.md) and [Processors.md](https://github.com/automattic/eslines/blob/master/src/processors/README.md).
