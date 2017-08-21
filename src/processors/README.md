@@ -40,6 +40,22 @@ Example:
 
 No config needed.
 
+### filter-when-format
+
+`filter-when-format` will remove any break for the rules indicated if the first file docblock comment contains a `@format` tag, so these rule breaks will be filtered and won't be passed to the next processor or final report.
+
+The use case for this processor is when trying to use a tool other than `ESLint` to format the code. Sometimes, `ESLint` has a different opinion about the final formatting, so we need to conditionally turn some rules off if the file is already formatted (like the `indent` rule).
+
+Config:
+
+* `rulesToIgnore`: array of ESLint rule ids that should be removed from the report if the `@format` tag is present in the checked file.
+
+Example:
+
+    "filter-when-format": {
+        "rulesToIgnore": ["indent"]
+    }
+
 ### enforce
 
 `enforce` transforms `warnings` into `errors` for a subset of rules.
@@ -50,6 +66,6 @@ Config options:
 
 Example config:
 
-    enforce": {
+    "enforce": {
         "rules": ["max-len"]
     }

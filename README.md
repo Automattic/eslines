@@ -40,7 +40,7 @@ If you rather use node-like pipes, check the [eslint-eslines](https://github.com
 
 ## Config file
 
-`eslines` reads its configuration from a file named `.eslines.json` placed in the root of your git repository. Out of the box, it comes with three ways of post-processing an ESLint report - we call them *processors*: `downgrade-unmodified-lines`, `filter-parsing-errors`, `enforce`.
+`eslines` reads its configuration from a file named `.eslines.json` placed in the root of your git repository. Out of the box, it comes with four ways of post-processing an ESLint report - we call them *processors*: `downgrade-unmodified-lines`, `filter-parsing-errors`, `filter-when-format`, `enforce`.
 
 Example config:
 
@@ -48,12 +48,15 @@ Example config:
 		"branches": {
 			"default": ["downgrade-unmodified-lines", "enforce"],
 			"master": ["filter-parsing-errors"],
-			"my/topic-branch": ["filter-parsing-errors"]
+			"my/topic-branch": ["filter-when-format"]
 		},
 		"processors": {
 			"downgrade-unmodified-lines": {
 				"remote": "origin/master",
 				"rulesNotToDowngrade": ["no-unused-vars"]
+			},
+			"filter-when-format": {
+				"rulesToIgnore": ["indent"]
 			},
 			"enforce": {
 				"rules": ["max-len"]
@@ -61,7 +64,11 @@ Example config:
 		}
 	}
 
-With the above configuration, the linting process will report only JavaScript parsing errors when running on a git branch called `master` or `my/topic-branch`. For other branches, `eslines` will report any `max-len` or `no-unused-vars` break, plus any error in lines modified within the current branch (provided that `no-unused-vars` is defined as an error in ESLint).
+With the above configuration, the linting process will report only JavaScript parsing errors when running on a git branch called `master`.
+
+On the `my/topic-branch` branch, `eslines` will completely remove any breaks reported by the `indent` rule in files that contain the `@format` tag. It will keep them intact in other files that don't contain the tag.
+
+For other branches, `eslines` will report any `max-len` or `no-unused-vars` break, plus any error in lines modified within the current branch (provided that `no-unused-vars` is defined as an error in ESLint).
 
 * **branches**: tell `eslines` which processors to use by default and which ones to use for particular branches. If none is set, it'll use `downgrade-unmodified-lines`.
 

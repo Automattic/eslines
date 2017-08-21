@@ -21,9 +21,11 @@
     "test-enforce": "./node_modules/.bin/tape tests/test-enforce.js | ./node_modules/.bin/faucet",
     "test-downgrade-unmodified-lines": "./node_modules/.bin/tape tests/test-downgrade-unmodified-lines.js | ./node_modules/.bin/faucet",
     "test-exit-codes": "./node_modules/.bin/tape tests/test-exit-codes.js | ./node_modules/.bin/faucet",
-    "test-filter-parsing-errors": "./node_modules/.bin/tape tests/test-filter-parsing-errors.js | ./node_modules/.bin/faucet"
+    "test-filter-parsing-errors": "./node_modules/.bin/tape tests/test-filter-parsing-errors.js | ./node_modules/.bin/faucet",
+    "test-filter-when-format": "./node_modules/.bin/tape tests/test-filter-when-format.js | ./node_modules/.bin/faucet"
   },
   "dependencies": {
+    "jest-docblock": "20.0.3",
     "optionator": "0.8.1"
   },
   "devDependencies": {
