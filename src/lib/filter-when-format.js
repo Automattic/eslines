@@ -4,9 +4,6 @@ function fileHasFormatPragma( file ) {
 	return file.source && 'format' in docblock.parse( file.source );
 }
 
-// If the file has the @format pragma at the beginning, it means it was formatted with
-// Prettier and that specified ESlint style rules should be ignored -- they sometimes
-// have a different opinion about the formatting, but Prettier is the authority.
 module.exports = function filterWhenFormat( report, rulesToIgnore ) {
 	if ( ! Array.isArray( rulesToIgnore ) || rulesToIgnore.length === 0 ) {
 		return report;

@@ -42,7 +42,9 @@ No config needed.
 
 ### filter-when-format
 
-`filter-when-format` will check if the first docblock comment of the file contains a `@format` tag. That means that the file was formatted with Prettier or a similar tool and that formatting-only rules (like `indent`) can be ignored for this file. The motivation for this processor is that ESLint rules sometimes have a different opinion about formatting than Prettier, so we want to conditionally turn them of and treat Prettier as the authority.
+`filter-when-format` will remove any break for the rules indicated if the first file docblock comment contains a `@format` tag, so these rule breaks will be filtered and won't be passed to the next processor or final report.
+
+The use case for this processor is when trying to use a tool other than `ESLint` to format the code. Sometimes, `ESLint` has a different opinion about the final formatting, so we need to conditionally turn some rules off if the file is already formatted (like the `indent` rule).
 
 Config:
 
