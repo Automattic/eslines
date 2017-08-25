@@ -1,7 +1,7 @@
 # Changelog
 
 ## Next version
-[v1.0.0...master](https://github.com/Automattic/eslines/compare/v0.0.13...master)
+[v1.0.0...master](https://github.com/Automattic/eslines/compare/v1.0.0...master)
 
 ## 2017-08-28 - v1.0.0
 [v0.0.13...v1.0.0](https://github.com/Automattic/eslines/compare/v0.0.13...v1.0.0)
