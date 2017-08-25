@@ -1,16 +1,19 @@
 # Changelog
 
 ## Next version
-[v0.0.13...master](https://github.com/Automattic/eslines/compare/v0.0.13...master)
+[v1.0.0...master](https://github.com/Automattic/eslines/compare/v0.0.13...master)
+
+## 2017-08-28 - v1.0.0
+[v0.0.13...v1.0.0](https://github.com/Automattic/eslines/compare/v0.0.13...v1.0.0)
 
 * Added composable processors.
-* Changed config format.
+* Added new processor called `enforce` that transforms warnings into errors.
+* Updated config format.
 * Updated docs.
+* Updated error handling.
 * Renamed `processor` CLI option to `processors`.
 * Renamed `parsing-errors` processor to `filter-parsing-errors`.
 * Renamed `lines-modified` to `downgrade-unmodified-lines`.
-* Added new processor called `enforce` that transforms warnings into errors.
-* Updated error handling.
 
 ## 2017-04-06 - v0.0.13
 [v0.0.12...v0.0.13](https://github.com/Automattic/eslines/compare/v0.0.12...v0.0.13)

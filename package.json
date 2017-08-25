@@ -1,6 +1,6 @@
 {
   "name": "eslines",
-  "version": "0.0.13",
+  "version": "1.0.0",
   "description": "Utility to process ESLint JSON reports",
   "keywords": ["eslint"],
   "license": "GPL-2.0+",
