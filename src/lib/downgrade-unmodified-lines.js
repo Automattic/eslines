@@ -26,12 +26,20 @@ module.exports = function( report, lines, rulesNotToDowngrade ) {
 		return severity === 2;
 	};
 
+	const getLinesModifiedInFile = ( linesModified, file ) => {
+		if ( linesModified && linesModified.constructor === Object ) {
+			return linesModified[ file ] || [];
+		}
+		return [];
+	};
+
 	// errors in lines not modified will be downgraded to warnings
 	// except those rules set not to downgrade
 	newReport.forEach( file => {
+		const linesModifiedInFile = getLinesModifiedInFile( lines, file.filePath );
 		file.messages.forEach( message => {
 			if ( isMessageAnError( message.severity ) &&
-				! isLineModified( message.line, lines[ file.filePath ] ) &&
+				! isLineModified( message.line, linesModifiedInFile ) &&
 				! isRuleNotToDowngrade( message.ruleId, rulesNotToDowngrade ) ) {
 				message.severity = 1;
 				file.warningCount ++;
