@@ -3,11 +3,6 @@ module.exports = function( report, lines, rulesNotToDowngrade ) {
 	// to tweak and edit in place - as this function remains pure.
 	const newReport = JSON.parse( JSON.stringify( report ) );
 
-	// If lines is an empty object {} we should not filter the report.
-	if ( ( Object.keys( lines ).length === 0 ) && ( lines.constructor === Object ) ) {
-		return newReport;
-	}
-
 	const isRuleNotToDowngrade = ( ruleId, rules ) => {
 		if ( ! Array.isArray( rules ) ) {
 			return false;
