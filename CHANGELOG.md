@@ -4,7 +4,7 @@
 [v1.1.0...master](https://github.com/Automattic/eslines/compare/v1.0.0...master)
 
 ## 2017-09-05 v1.1.0
-[v1.0.0...v1.1.0](https://github.com/Automattic/eslines/compare/v1.0.0...v1.1.1)
+[v1.0.0...v1.1.0](https://github.com/Automattic/eslines/compare/v1.0.0...v1.1.0)
 
 * Fixed `downgrade-unmodified-lines` processor: when there are no lines modified,
   the report should still downgrade all rules except those not to downgrade.
