@@ -3,11 +3,6 @@ module.exports = function( report, lines, rulesNotToDowngrade ) {
 	// to tweak and edit in place - as this function remains pure.
 	const newReport = JSON.parse( JSON.stringify( report ) );
 
-	// If lines is an empty object {} we should not filter the report.
-	if ( ( Object.keys( lines ).length === 0 ) && ( lines.constructor === Object ) ) {
-		return newReport;
-	}
-
 	const isRuleNotToDowngrade = ( ruleId, rules ) => {
 		if ( ! Array.isArray( rules ) ) {
 			return false;
@@ -31,12 +26,20 @@ module.exports = function( report, lines, rulesNotToDowngrade ) {
 		return severity === 2;
 	};
 
+	const getLinesModifiedInFile = ( linesModified, file ) => {
+		if ( linesModified && linesModified.constructor === Object ) {
+			return linesModified[ file ] || [];
+		}
+		return [];
+	};
+
 	// errors in lines not modified will be downgraded to warnings
 	// except those rules set not to downgrade
 	newReport.forEach( file => {
+		const linesModifiedInFile = getLinesModifiedInFile( lines, file.filePath );
 		file.messages.forEach( message => {
 			if ( isMessageAnError( message.severity ) &&
-				! isLineModified( message.line, lines[ file.filePath ] ) &&
+				! isLineModified( message.line, linesModifiedInFile ) &&
 				! isRuleNotToDowngrade( message.ruleId, rulesNotToDowngrade ) ) {
 				message.severity = 1;
 				file.warningCount ++;
