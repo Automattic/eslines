@@ -9,23 +9,23 @@ const optionator = require( 'optionator' )( {
 		option: 'processors',
 		alias: 'p',
 		type: 'String',
-		description: 'choose a list of processors - "downgrade-unmodified-lines" by default'
+		description: 'choose a list of processors - "downgrade-unmodified-lines" by default',
 	}, {
 		option: 'format',
 		alias: 'f',
 		type: 'String',
-		description: 'choose an ESLint output format for eslines - "stylish" by default'
+		description: 'choose an ESLint output format for eslines - "stylish" by default',
 	}, {
 		option: 'diff',
 		alias: 'd',
 		type: 'String',
-		description: 'choose what to diff, index or remote - "remote" by default'
+		description: 'choose what to diff, index or remote - "remote" by default',
 	}, {
 		option: 'quiet',
 		alias: 'q',
 		type: 'Boolean',
-		description: 'report errors only'
-	} ]
+		description: 'report errors only',
+	} ],
 } );
 
 /* eslint no-process-exit: "off" */

@@ -42,7 +42,7 @@ module.exports = function( report, lines, rulesNotToDowngrade ) {
 				! isLineModified( message.line, linesModifiedInFile ) &&
 				! isRuleNotToDowngrade( message.ruleId, rulesNotToDowngrade ) ) {
 				message.severity = 1;
-				file.warningCount ++;
+				file.warningCount++;
 				file.errorCount--;
 			}
 		} );
