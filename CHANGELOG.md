@@ -1,7 +1,9 @@
 # Changelog
 
 ## Next version
-[v1.1.0...master](https://github.com/Automattic/eslines/compare/v1.0.0...master)
+[v1.1.0...master](https://github.com/Automattic/eslines/compare/v1.1.0...master)
+
+* Bump eslint-config-wpcalypso, eslint-plugin-wpcalypso, and ESLint versions.
 
 ## 2017-09-05 v1.1.0
 [v1.0.0...v1.1.0](https://github.com/Automattic/eslines/compare/v1.0.0...v1.1.0)
