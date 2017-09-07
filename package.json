@@ -26,12 +26,12 @@
   },
   "dependencies": {
     "jest-docblock": "20.0.3",
-    "optionator": "0.8.1"
+    "optionator": "0.8.1",
+    "eslint": "3.8.1"
   },
   "devDependencies": {
     "tape": "4.6.0",
     "faucet": "0.0.1",
-    "eslint": "3.8.1",
     "eslint-config-wpcalypso": "0.8.0",
     "eslint-plugin-wpcalypso": "3.4.1"
   }
