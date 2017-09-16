@@ -11,7 +11,7 @@ module.exports = function( results ) {
 				Object.assign( result, {
 					messages: filteredMessages,
 					errorCount: filteredMessages.length,
-					warningCount: 0
+					warningCount: 0,
 				} )
 			);
 		}

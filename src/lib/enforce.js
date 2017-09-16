@@ -14,8 +14,8 @@ module.exports = function( report, rulesToEnforce ) {
 		file.messages.forEach( message => {
 			if ( shouldEnforceRule( message.ruleId, rulesToEnforce ) ) {
 				message.severity = 2;
-				file.warningCount --;
-				file.errorCount ++;
+				file.warningCount--;
+				file.errorCount++;
 			}
 		} );
 	} );
