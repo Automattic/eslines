@@ -2,7 +2,9 @@
   "name": "eslines",
   "version": "1.1.0",
   "description": "Utility to process ESLint JSON reports",
-  "keywords": ["eslint"],
+  "keywords": [
+    "eslint"
+  ],
   "license": "GPL-2.0+",
   "repository": {
     "type": "git",
@@ -15,7 +17,7 @@
   "scripts": {
     "clean": "rm -rf node_modules",
     "lint": "eslint .",
-    "lint-fix": ".eslint --fix .",
+    "lint-fix": "eslint --fix .",
     "test": "tape tests/test*js | faucet",
     "test-differ": "tape tests/test-differ.js | faucet",
     "test-enforce": "tape tests/test-enforce.js | faucet",
