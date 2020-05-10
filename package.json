@@ -1,6 +1,6 @@
 {
   "name": "eslines",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "Utility to process ESLint JSON reports",
   "keywords": [
     "eslint"
