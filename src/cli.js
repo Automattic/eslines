@@ -33,7 +33,7 @@ module.exports = function( report, options ) {
 			if ( format.indexOf( '/' ) > -1 ) {
 				formatterPath = path.resolve( process.cwd(), format );
 			} else {
-				formatterPath = 'eslint/lib/formatters/' + format;
+				formatterPath = 'eslint/lib/cli-engine/formatters/' + format;
 			}
 
 			try {
