@@ -33,7 +33,7 @@
   "devDependencies": {
     "tape": "4.6.0",
     "faucet": "0.0.1",
-    "eslint": "4.6.1",
+    "eslint": "7.0.0",
     "eslint-config-wpcalypso": "1.0.0",
     "eslint-plugin-wpcalypso": "4.0.0"
   }
