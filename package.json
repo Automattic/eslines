@@ -28,7 +28,7 @@
   },
   "dependencies": {
     "jest-docblock": "20.0.3",
-    "optionator": "0.8.1"
+    "optionator": "0.9.1"
   },
   "devDependencies": {
     "babel-eslint": "10.1.0",
