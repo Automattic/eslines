@@ -94,7 +94,7 @@ module.exports = function( report, options ) {
 	process.env.ESLINES_DIFF = options.diff || 'remote';
 	let newReport = processors.reduce(
 		( accReport, processor ) => JSON.parse( processor( accReport ) ),
-		report
+		report,
 	);
 	delete process.env.ESLINES_DIFF;
 

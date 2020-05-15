@@ -1,6 +1,6 @@
 module.exports = {
 	root: true,
-	'extends': 'wpcalypso',
+	extends: 'wpcalypso',
 	env: {
 		node: true,
 	},
