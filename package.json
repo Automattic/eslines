@@ -27,14 +27,16 @@
     "test-filter-when-format": "tape tests/test-filter-when-format.js | faucet"
   },
   "dependencies": {
-    "jest-docblock": "20.0.3",
-    "optionator": "0.8.1"
+    "jest-docblock": "26.0.0",
+    "optionator": "0.9.1"
   },
   "devDependencies": {
-    "tape": "4.6.0",
+    "babel-eslint": "10.1.0",
+    "eslint": ">=6.0.0",
+    "eslint-config-wpcalypso": "5.0.0",
+    "eslint-plugin-jsdoc": "25.4.1",
+    "eslint-plugin-wpcalypso": "4.1.0",
     "faucet": "0.0.1",
-    "eslint": "7.0.0",
-    "eslint-config-wpcalypso": "1.0.0",
-    "eslint-plugin-wpcalypso": "4.0.0"
+    "tape": "5.0.0"
   }
 }

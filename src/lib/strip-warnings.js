@@ -12,7 +12,7 @@ module.exports = function( results ) {
 					messages: filteredMessages,
 					errorCount: filteredMessages.length,
 					warningCount: 0,
-				} )
+				} ),
 			);
 		}
 	} );
