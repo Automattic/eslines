@@ -1,9 +1,16 @@
 # Changelog
 
 ## Next version
-[v1.1.0...master](https://github.com/Automattic/eslines/compare/v1.1.0...master)
+[v2.0.0...master](https://github.com/Automattic/eslines/compare/v2.0.0...master)
 
-* Bump dev & prod dependencies to latest versions.
+## 2020-05-19 v2.0.0
+[v1.1.0...v2.0.0](https://github.com/Automattic/eslines/compare/v1.1.0...v2.0.0)
+
+- Bump dev & prod dependencies to the latest versions.
+
+### Breaking changes
+
+- eslines now requires a peer dependency of ESLint 6 or above. [#20](https://github.com/Automattic/eslines/pull/20)
 
 ## 2017-09-05 v1.1.0
 [v1.0.0...v1.1.0](https://github.com/Automattic/eslines/compare/v1.0.0...v1.1.0)
