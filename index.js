@@ -28,8 +28,6 @@ const optionator = require( 'optionator' )( {
 	} ],
 } );
 
-/* eslint no-process-exit: "off" */
-
 if ( ! process.stdin.isTTY ) {
 	process.stdin.setEncoding( 'utf-8' );
 	let inputData = '';
@@ -38,6 +36,8 @@ if ( ! process.stdin.isTTY ) {
 	} );
 	process.stdin.on( 'end', () => {
 		const opts = optionator.parseArgv( process.argv );
-		process.exit( cli( JSON.parse( inputData ), opts ) );
+		cli( JSON.parse( inputData ), opts ).then( rc => {
+			process.exitCode = rc;
+		} );
 	} );
 }
