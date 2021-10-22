@@ -17,6 +17,7 @@ const stripWarnings = require( './lib/strip-warnings' );
 
 module.exports = function( report, options ) {
 	const getESLintFormatter = format => {
+		// eslint-disable-next-line inclusive-language/use-inclusive-words
 		// See https://github.com/eslint/eslint/blob/master/lib/cli-engine.js#L477
 
 		let formatterPath;
