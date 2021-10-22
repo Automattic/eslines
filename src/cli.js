@@ -55,7 +55,7 @@ module.exports = function( report, options ) {
 		const head = childProcess.spawnSync( 'git', argsBranchName ).stdout.toString().trim();
 		for ( const branch in branches ) {
 			if ( branch === head ) {
-				// branch names could be master, add/topic-branch
+				// branch names could be main, add/topic-branch
 				// and any other git branch valid name
 				processorName = branches[ branch ];
 				break;

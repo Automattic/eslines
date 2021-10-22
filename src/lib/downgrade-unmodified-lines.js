@@ -10,16 +10,16 @@ module.exports = function( report, lines, rulesNotToDowngrade ) {
 		return rules.indexOf( ruleId ) > -1;
 	};
 
-	const isLineModified = ( line, whiteList ) => {
+	const isLineModified = ( line, allowList ) => {
 		// We expect the function to be passed the same files
 		// within the ESLint report object and the lines object.
 		// Nevertheless, if lines object does not contain a file
 		// which the ESLint report object has, we set that line
 		// as unmodifed - precaution principle.
-		if ( ! whiteList ) {
+		if ( ! allowList ) {
 			return false;
 		}
-		return whiteList.indexOf( line ) > -1;
+		return allowList.indexOf( line ) > -1;
 	};
 
 	const isMessageAnError = severity => {
