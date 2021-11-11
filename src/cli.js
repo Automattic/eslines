@@ -4,9 +4,9 @@
 
 const childProcess = require( 'child_process' );
 const fs = require( 'fs' );
-const path = require( 'path' );
 const exitCode = require( './lib/exit-code' );
 const stripWarnings = require( './lib/strip-warnings' );
+const getESLintFormatter = require( './lib/get-formatter' );
 
 /*
 * This function should *not* call process.exit() directly,
@@ -15,38 +15,7 @@ const stripWarnings = require( './lib/strip-warnings' );
 *
 */
 
-module.exports = function( report, options ) {
-	const getESLintFormatter = format => {
-		// Refer to https://github.com/eslint/eslint/blob/v7.32.0/lib/cli-engine/cli-engine.js#L1004
-		let formatterPath;
-
-		// default is stylish
-		format = format || 'stylish';
-
-		// only strings are valid formatters
-		if ( typeof format === 'string' ) {
-			// replace \ with / for Windows compatibility
-			format = format.replace( /\\/g, '/' );
-
-			// if there's a slash, then it's a file
-			if ( format.indexOf( '/' ) > -1 ) {
-				formatterPath = path.resolve( process.cwd(), format );
-			} else {
-				formatterPath = 'eslint/lib/cli-engine/formatters/' + format;
-			}
-
-			try {
-				return require( formatterPath );
-			} catch ( ex ) {
-				const msg = 'Problem loading formatter: ' + formatterPath + '\nError: ';
-				ex.message = msg + ex.message;
-				throw ex;
-			}
-		} else {
-			return null;
-		}
-	};
-
+module.exports = async function( report, options ) {
 	const getProcessorListForBranch = ( branches ) => {
 		let processorName = branches.default || [ 'downgrade-unmodified-lines' ];
 
@@ -100,7 +69,7 @@ module.exports = function( report, options ) {
 	newReport = options.quiet ? stripWarnings( newReport ) : newReport;
 
 	if ( Array.isArray( newReport ) && ( newReport.length > 0 ) ) {
-		const formatter = getESLintFormatter( options.format );
+		const formatter = await getESLintFormatter( options.format );
 		process.stdout.write( formatter( newReport ) );
 
 		// If newReport has any error, exit code will be 1;
