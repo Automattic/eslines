@@ -1,7 +1,13 @@
 # Changelog
 
 ## Next version
-[v2.0.0...master](https://github.com/Automattic/eslines/compare/v2.0.0...master)
+[v2.1.0...master](https://github.com/Automattic/eslines/compare/v2.1.0...master)
+
+## 2021-11-21 v2.1.0
+[v2.0.0...v2.1.0](https://github.com/Automattic/eslines/compare/v2.0.0...v2.1.0)
+
+- Add support for ESLint 8 [#23](https://github.com/Automattic/eslines/pull/23)
+- Update dependencies
 
 ## 2020-05-19 v2.0.0
 [v1.1.0...v2.0.0](https://github.com/Automattic/eslines/compare/v1.1.0...v2.0.0)
