@@ -42,5 +42,9 @@
   },
   "peerDependencies": {
     "eslint": ">=6.0.0"
-  }
+  },
+  "files": [
+    "src/**/*.js",
+    "index.js"
+  ]
 }
