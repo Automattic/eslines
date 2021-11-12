@@ -18,13 +18,13 @@
     "clean": "rm -rf node_modules",
     "lint": "eslint .",
     "lint-fix": "eslint --fix .",
-    "test": "tape tests/test*js | faucet",
-    "test-differ": "tape tests/test-differ.js | faucet",
-    "test-enforce": "tape tests/test-enforce.js | faucet",
-    "test-downgrade-unmodified-lines": "tape tests/test-downgrade-unmodified-lines.js | faucet",
-    "test-exit-codes": "tape tests/test-exit-codes.js | faucet",
-    "test-filter-parsing-errors": "tape tests/test-filter-parsing-errors.js | faucet",
-    "test-filter-when-format": "tape tests/test-filter-when-format.js | faucet"
+    "test": "tape tests/test*js | tap-min",
+    "test-differ": "tape tests/test-differ.js | tap-min",
+    "test-enforce": "tape tests/test-enforce.js | tap-min",
+    "test-downgrade-unmodified-lines": "tape tests/test-downgrade-unmodified-lines.js | tap-min",
+    "test-exit-codes": "tape tests/test-exit-codes.js | tap-min",
+    "test-filter-parsing-errors": "tape tests/test-filter-parsing-errors.js | tap-min",
+    "test-filter-when-format": "tape tests/test-filter-when-format.js | tap-min"
   },
   "dependencies": {
     "jest-docblock": "^27.0.6",
@@ -37,7 +37,7 @@
     "eslint-plugin-inclusive-language": "^2.1.1",
     "eslint-plugin-jsdoc": "^37.0.3",
     "eslint-plugin-wpcalypso": "^5.0.0",
-    "faucet": "0.0.1",
+    "tap-min": "^2.0.0",
     "tape": "^5.3.1"
   },
   "peerDependencies": {
