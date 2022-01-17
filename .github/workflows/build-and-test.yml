@@ -21,10 +21,10 @@ jobs:
       - name: Harden Runner
         uses: step-security/harden-runner@14dc64f30986eaa2ad2dddcec073f5aab18e5a24 # v1
         with:
-          egress-policy: audit
           allowed-endpoints: 
             api.github.com:443
             artifactcache.actions.githubusercontent.com:443
+            gel7acprodeus1file0.blob.core.windows.net:443
             github.com:443
             objects.githubusercontent.com:443
             registry.npmjs.org:443
@@ -67,10 +67,10 @@ jobs:
       - name: Harden Runner
         uses: step-security/harden-runner@14dc64f30986eaa2ad2dddcec073f5aab18e5a24 # v1
         with:
-          egress-policy: audit
           allowed-endpoints: 
             api.github.com:443
             artifactcache.actions.githubusercontent.com:443
+            gel7acprodeus1file0.blob.core.windows.net:443
             github.com:443
             objects.githubusercontent.com:443
             registry.npmjs.org:443
