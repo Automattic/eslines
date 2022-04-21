@@ -44,7 +44,7 @@ jobs:
         run: npm run lint
 
   ci:
-    name: Run tests
+    name: "Run tests (Node.js: ${{ matrix.node_version }}, ESLint: ${{ matrix.eslint_version }})"
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
