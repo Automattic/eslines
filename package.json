@@ -27,7 +27,7 @@
     "test-filter-when-format": "tape tests/test-filter-when-format.js | tap-min"
   },
   "dependencies": {
-    "jest-docblock": "^27.0.6",
+    "jest-docblock": "^28.0.0",
     "optionator": "^0.9.1"
   },
   "devDependencies": {
