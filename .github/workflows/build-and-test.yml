@@ -18,7 +18,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Harden Runner
-        uses: step-security/harden-runner@ebacdc22ef6c2cfb85ee5ded8f2e640f4c776dd5 # tag=v1.5.0
+        uses: step-security/harden-runner@v2
         with:
           allowed-endpoints: 
             api.github.com:443
@@ -29,7 +29,7 @@ jobs:
             registry.npmjs.org:443
 
       - name: Check out the source
-        uses: actions/checkout@93ea575cb5d8a053eaa0ac8fa3b40d7e05a33cc8 # tag=v3
+        uses: actions/checkout@v3
 
       - name: Setup Node.js environment
         uses: actions/setup-node@v3.5.1
@@ -63,7 +63,7 @@ jobs:
 
     steps:
       - name: Harden Runner
-        uses: step-security/harden-runner@ebacdc22ef6c2cfb85ee5ded8f2e640f4c776dd5 # tag=v1.5.0
+        uses: step-security/harden-runner@v2
         with:
           allowed-endpoints: 
             api.github.com:443
@@ -74,7 +74,7 @@ jobs:
             registry.npmjs.org:443
 
       - name: Check out the source
-        uses: actions/checkout@93ea575cb5d8a053eaa0ac8fa3b40d7e05a33cc8 # tag=v3
+        uses: actions/checkout@v3
 
       - name: Setup Node.js environment
         uses: actions/setup-node@v3.5.1
